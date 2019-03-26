@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace WebApiDemo
+namespace ShippingApi
 {
     public class FilterConfig
     {

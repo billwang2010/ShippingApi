@@ -2,7 +2,7 @@
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace WebApiDemo
+namespace ShippingApi
 {
     public class WebApiApplication : System.Web.HttpApplication
     {

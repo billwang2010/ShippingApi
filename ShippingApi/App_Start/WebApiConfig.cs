@@ -1,6 +1,6 @@
 ﻿using System.Web.Http;
 
-namespace WebApiDemo
+namespace ShippingApi
 {
     public static class WebApiConfig
     {
