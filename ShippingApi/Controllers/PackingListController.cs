@@ -9,23 +9,6 @@ namespace ShippingApi.Controllers
     public class PackingListController : ApiController
     {
         [TokenAuthorize]
-        public async Task<IHttpActionResult> Get(string ht_hf = "", string contract_no = "", string release_no = "")
-        {
-            string sql = "EXEC SP_PackingListRpt @ht_hf='" + ht_hf.Replace("'","''") + "',@contract_no='" + contract_no.Replace("'", "''") + "',@release_no='" + release_no.Replace("'", "''") + "'";
-
-            var result = new List<dynamic>();
-            var task = Task.Run(() => {
-                result = SqlMapper.GetData(sql);
-            });
-            await Task.WhenAll(task);
-
-            if (result == null)
-                return NotFound();
-            else
-                return Json(result.ToList());
-        }
-
-        [TokenAuthorize]
         public async Task<IHttpActionResult> Get(string list_name)
         {
             string sql = string.Empty;
@@ -41,6 +24,23 @@ namespace ShippingApi.Controllers
                     sql = "SELECT distinct ht_hf FROM A_Shipping WHERE ht_hf is not null ";
                     break;
             }
+
+            var result = new List<dynamic>();
+            var task = Task.Run(() => {
+                result = SqlMapper.GetData(sql);
+            });
+            await Task.WhenAll(task);
+
+            if (result == null)
+                return NotFound();
+            else
+                return Json(result.ToList());
+        }
+
+        [TokenAuthorize]
+        public async Task<IHttpActionResult> Get(string ht_hf = "", string contract_no = "", string release_no = "")
+        {
+            string sql = "EXEC SP_PackingListRpt @ht_hf='" + ht_hf.Replace("'","''") + "',@contract_no='" + contract_no.Replace("'", "''") + "',@release_no='" + release_no.Replace("'", "''") + "'";
 
             var result = new List<dynamic>();
             var task = Task.Run(() => {
